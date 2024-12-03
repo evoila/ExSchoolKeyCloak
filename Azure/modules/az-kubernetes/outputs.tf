@@ -37,3 +37,8 @@ output "kube_config" {
   value       = try(module.aks[0].kube_config, "")
   sensitive   = true
 }
+
+output "kubernetes_public_ip" {
+  description = "The public IP address of the AKS cluster"
+  value       = azurerm_public_ip.aks_ip.ip_address
+}

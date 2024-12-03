@@ -13,6 +13,15 @@ resource "azurerm_user_assigned_identity" "k8s_identity" {
   tags                = var.tags
 }
 
+resource "azurerm_public_ip" "aks_ip" {
+  name                = "pip-${local.naming_prefix}-aks"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  allocation_method   = "Static"
+  sku                 = "Standard" # Muss Standard sein für AKS
+  
+  tags = var.tags
+}
 
 # resource "azurerm_role_assignment" "aks_acr_pull" {
 #   count                = var.deploy_k8s ? 1 : 0
@@ -88,6 +97,10 @@ module "aks" {
   identity_type                     = "UserAssigned"
   identity_ids                      = [azurerm_user_assigned_identity.k8s_identity[0].id]
 
+    # Load Balancer Profil aktivieren
+  load_balancer_profile_enabled = true
+  load_balancer_profile_outbound_ip_address_ids = [azurerm_public_ip.aks_ip.id]
+  load_balancer_sku = "standard"
 
   tags = var.tags
 

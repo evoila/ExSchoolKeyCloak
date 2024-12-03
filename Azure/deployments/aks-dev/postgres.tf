@@ -1,3 +1,17 @@
+# Namespace erstellen
+resource "kubernetes_namespace" "keycloak" {
+  depends_on = [module.aks]
+  
+  metadata {
+    name = "keycloak"
+    
+    labels = {
+      environment = "prod"
+      app         = "keycloak"
+    }
+  }
+}
+
 
 # Storage Class für PostgreSQL
 resource "kubernetes_storage_class" "postgres_premium" {
