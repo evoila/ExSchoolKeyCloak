@@ -1,0 +1,10 @@
+# Visual Studio Code files
+*.code-workspace
+
+# Terraform files and folders
+**/.terraform/*
+**/.terraform.*
+*.terraform*
+*.tfstate
+*.tfstate.*
+secrets.json

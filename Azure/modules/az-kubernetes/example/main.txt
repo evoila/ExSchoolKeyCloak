@@ -1,0 +1,42 @@
+module "azure_region" {
+  source  = "claranet/regions/azurerm"
+  version = "7.1.1"
+
+  azure_region = var.location
+}
+
+module "rootblock_k8sextension" {
+  source = "../../modules/az-kubernetes"
+
+  #General
+  deploy_k8sextension = var.deploy_k8s
+  application         = var.application
+  environment         = var.environment
+  location            = var.location
+  location_short      = module.azure_region.location_short
+  tags                = var.tags
+
+  #AKS 
+  vnet_subnet_id                  = module.rootblock_networking.subnet_ids["${local.naming_prefix}-k8s-snet"]
+  resource_group_name             = module.rootblock_networking.resource_group_names["module"]["k8sextension"]
+  sku_tier                        = var.aks_sku_tier
+  k8s_version                     = var.k8s_version
+  os_disk_size_gb                 = var.os_disk_size_gb
+  admin_username                  = var.admin_username
+  rbac_aad_admin_group_object_ids = [data.azuread_group.admin_group.object_id]
+  ## Node pool configuration
+  default_node_vm_size      = var.default_node_vm_size
+  auto_scaling_default_node = var.auto_scaling_default_node
+  node_count                = var.node_count
+  node_min_count            = var.node_min_count
+  node_max_count            = var.node_max_count
+  max_pods                  = var.max_pods
+  k8s_private_dns_zone_id   = local.private_dns_zone_k8s_id
+  node_pools                = var.node_pools
+
+  #ACR 
+  # acr_sku           = var.acr_sku
+  # acr_admin_enabled = var.acr_admin_enabled
+
+  depends_on = [module.rootblock_service]
+}

@@ -1,0 +1,40 @@
+[1mProject:[22m main
+
+ [4mName[24m                                                                                                             [4mMonthly Qty[24m  [4mUnit[24m                    [4mMonthly Cost[24m   
+                                                                                                                                                                      
+ [1mmodule.aks.module.aks[0].azurerm_kubernetes_cluster_node_pool.node_pool_create_before_destroy["keycloak"][22m                                                            
+ [2m├─[22m Instance usage (Linux, pay as you go, Standard_B2ms)                                                                  730  hours                         $70.08   
+ [2m└─[22m os_disk                                                                                                                                                           
+ [2m   └─[22m Storage (P10, LRS)                                                                                                   1  months                        $21.68   
+                                                                                                                                                                      
+ [1mmodule.aks.module.aks[0].azurerm_kubernetes_cluster.main[22m                                                                                                             
+ [2m├─[22m default_node_pool                                                                                                                                                 
+ [2m│  ├─[22m Instance usage (Linux, pay as you go, Standard_B2s)                                                                730  hours                         $35.04   
+ [2m│  └─[22m os_disk                                                                                                                                                        
+ [2m│     └─[22m Storage (P6, LRS)                                                                                                 1  months                        $11.23   
+ [2m└─[22m Load Balancer                                                                                                                                                     
+ [2m   └─[22m Data processed                                                                                       Monthly cost depends on usage: $0.005 per GB              
+                                                                                                                                                                      
+ [1mmodule.aks.module.aks[0].azurerm_log_analytics_workspace.main[0][22m                                                                                                     
+ [2m├─[22m Log data ingestion                                                                                      not found                                                 
+ [2m├─[22m Log data export                                                                                         Monthly cost depends on usage: $0.10 per GB               
+ [2m├─[22m Basic log data ingestion                                                                                Monthly cost depends on usage: $0.65 per GB               
+ [2m├─[22m Basic log search queries                                                                                Monthly cost depends on usage: $0.0065 per GB searched    
+ [2m├─[22m Archive data                                                                                            Monthly cost depends on usage: $0.026 per GB              
+ [2m├─[22m Archive data restored                                                                                   Monthly cost depends on usage: $0.13 per GB               
+ [2m└─[22m Archive data searched                                                                                   Monthly cost depends on usage: $0.0065 per GB             
+                                                                                                                                                                      
+[1m OVERALL TOTAL[22m                                                                                                                                             $138.03 
+
+*Usage costs can be estimated by updating Infracost Cloud settings, see docs for other options.
+
+──────────────────────────────────
+10 cloud resources were detected:
+∙ 3 were estimated
+∙ 7 were free
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Project                                            ┃ Baseline cost ┃ Usage cost* ┃ Total cost ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━╋━━━━━━━━━━━━┫
+┃ main                                               ┃          $138 ┃           - ┃       $138 ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━┻━━━━━━━━━━━━┛
